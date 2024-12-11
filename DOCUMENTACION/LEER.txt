@@ -1,0 +1,39 @@
+ESTE ES EL CODIGO DE UNA APLICACION DE ESCRITORIO CREADA EN PYTHON QUE SU FUNCION ES TOMAR LOS DATOS DE UN EXCEL Y SUBIR ESOS DATOS A UNA BASE DE DATOS ESPECIFICA, TRABAJA CON TABLAS RELACIONALES EN ESTE CASO LO QUE RELACIONA UNA TABLA CON OTRA ES EL CAMPO IOSFA ESE ES EL NUMERO UNICO DE CADA UNO Y ENVIA LOS DATOS A LAS DEMAS TABLAS.
+
+--------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------
+
+
+0- Crear entorno virtual
+
+python -m venv nombre_carpeta
+
+1- Para generar el archivo "requirements.txt" este archivo es el que te dice todas las librerias necesarias para que funcione tu programa:
+
+pip freeze > requirements.txt
+
+2- Con el siguiente comando instalas todos los requerimiento necesarios para que funcione el programa:
+
+pip install -r requirements.txt
+
+
+--------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------
+
+Nombre de base de datos: DB_MASCOTAS
+
+-- Tabla Mascotas
+CREATE TABLE Mascotas (
+    iosfa INT PRIMARY KEY,  -- id único para cada mascota
+    nombre VARCHAR(100) NOT NULL,
+    edad INT NOT NULL,
+    descripcion VARCHAR(255) NOT NULL
+);
+
+-- Tabla Amos
+CREATE TABLE Amos (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    iosfa INT,               -- Relacionamos con el iosfa de la tabla Mascotas
+    amo VARCHAR(100),        
+    FOREIGN KEY (iosfa) REFERENCES Mascotas(iosfa)  -- Clave foránea que conecta con Mascotas
+);

@@ -1,0 +1,291 @@
+CREATE TABLE PERSONAL (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    jerarquia VARCHAR(50),
+    nombre_apellido VARCHAR(100),
+    iosfa INT,
+    especialidad VARCHAR(50),
+    subespecialidad_avanzada VARCHAR(50),
+    cuerpo VARCHAR(50),
+    escalafon VARCHAR(50),
+    fecha_egreso DATE,
+    promocion VARCHAR(50),
+    unidad_revista VARCHAR(100),
+    destino_interno VARCHAR(100),
+    cargo VARCHAR(100),
+    rti VARCHAR(50),
+    celular VARCHAR(15),
+    preferencia_destino VARCHAR(50),
+    desea_permanecer_destino VARCHAR(5),
+    email_institucional VARCHAR(100),
+    usuario_gde VARCHAR(50),
+    nivel_idioma VARCHAR(50),
+    fecha_nivel_idioma DATE,
+    rindio_examen_sidiel VARCHAR(5),
+    lugar_nacimiento VARCHAR(100),
+    fecha_nacimiento DATE,
+    domicilio VARCHAR(200),
+    cuil VARCHAR(20),
+    cbu VARCHAR(20),
+    factor_sanguineo VARCHAR(5)
+);
+
+
+CREATE TABLE FAMILIA (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    estado_civil VARCHAR(20),
+    conyuge_nombre VARCHAR(100),
+    conyuge_grado VARCHAR(50),
+    conyuge_fecha_nacimiento DATE,
+    conyuge_dni VARCHAR(20),
+    conyuge_especialidad VARCHAR(50),
+    conyuge_lugar_trabajo VARCHAR(100),
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+
+
+CREATE TABLE HIJOS (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    apellido_nombre VARCHAR(100),
+    dni VARCHAR(20),
+    edad INT,
+    fecha_nacimiento DATE,
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+
+
+CREATE TABLE DESTINOS_ANTERIORES (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    unidad VARCHAR(100),
+    destino_interno VARCHAR(100),
+    cargo VARCHAR(100),
+    fecha_desde DATE,
+    fecha_hasta DATE,
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+
+
+CREATE TABLE CAPACITACION_INSTITUCIONAL (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    capacitacion_obtenida VARCHAR(100),
+    expedido_por VARCHAR(100),
+    fecha DATE,
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+
+
+CREATE TABLE CAPACITACION_EXTRAINSTITUCIONAL (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    capacitacion_obtenida VARCHAR(100),
+    expedido_por VARCHAR(100),
+    fecha DATE,
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+
+
+CREATE TABLE ACTIVIDAD_ROL_INSTRUCTOR (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    curso VARCHAR(100),
+    asignatura_temario VARCHAR(100),
+    fecha DATE,
+    modalidad VARCHAR(50),
+    titulo_habilitante VARCHAR(100),
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+
+
+CREATE TABLE COMISIONES_PAIS (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    lugar VARCHAR(100),
+    tipo_motivo_despliegue VARCHAR(100),
+    fecha_desde DATE,
+    fecha_hasta DATE,
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+
+
+CREATE TABLE COMISIONES_EXTERIOR (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    lugar VARCHAR(100),
+    tipo_motivo_despliegue VARCHAR(100),
+    fecha_desde DATE,
+    fecha_hasta DATE,
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+
+
+CREATE TABLE CAMPAÑAS_ANTARTICAS (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    dotacion_grupo_tarea VARCHAR(100),
+    cargo_desempenado VARCHAR(100),
+    fecha_desde DATE,
+    fecha_hasta DATE,
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+
+
+CREATE TABLE ACTIVIDAD_OPERATIVA (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    cumpliendo_especialidad VARCHAR(5),
+    adscripto VARCHAR(5),
+    turno_servicio_siempre VARCHAR(5),
+    ultima_condicion_tiro_fecha DATE,
+    ultima_condicion_tiro_lugar VARCHAR(100),
+    aptitud_psicofisica_fecha DATE,
+    aptitud_psicofisica_expedido_por VARCHAR(100),
+    aptitud_fisica_fecha DATE,
+    aptitud_fisica_expedido_por VARCHAR(100),
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+
+
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE PERSONAL (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    jerarquia VARCHAR(50),
+    nombre_apellido VARCHAR(100),
+    iosfa INT,
+    especialidad VARCHAR(50),
+    subespecialidad_avanzada VARCHAR(50),
+    cuerpo VARCHAR(50),
+    escalafon VARCHAR(50),
+    fecha_egreso DATE,
+    promocion VARCHAR(50),
+    unidad_revista VARCHAR(100),
+    destino_interno VARCHAR(100),
+    cargo VARCHAR(100),
+    rti VARCHAR(50),
+    celular VARCHAR(15),
+    preferencia_destino VARCHAR(50),
+    desea_permanecer_destino VARCHAR(5),
+    email_institucional VARCHAR(100),
+    usuario_gde VARCHAR(50),
+    fecha_nacimiento DATE,
+    domicilio VARCHAR(200),
+    cuil VARCHAR(20),
+    cbu VARCHAR(20),
+    factor_sanguineo VARCHAR(5)
+);    
+
+CREATE TABLE IDIOMA (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    nombre_idioma VARCHAR(50)
+    nivel_idioma VARCHAR(50),
+    fecha_nivel_idioma DATE,
+    rindio_examen_sidiel VARCHAR(5),
+    lugar_nacimiento VARCHAR(100),
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+
+CREATE TABLE FAMILIA (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    estado_civil VARCHAR(20),
+    conyuge_nombre VARCHAR(100),
+    conyuge_grado VARCHAR(50),
+    conyuge_fecha_nacimiento DATE,
+    conyuge_dni VARCHAR(20),
+    conyuge_especialidad VARCHAR(50),
+    conyuge_lugar_trabajo VARCHAR(100),
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+    
+CREATE TABLE HIJOS (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    apellido_nombre VARCHAR(100),
+    dni VARCHAR(20),
+    edad INT,
+    fecha_nacimiento DATE,
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+
+CREATE TABLE DESTINOS_ANTERIORES (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    unidad VARCHAR(100),
+    destino_interno VARCHAR(100),
+    cargo VARCHAR(100),
+    fecha_desde DATE,
+    fecha_hasta DATE,
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+
+CREATE TABLE CAPACITACION_INSTITUCIONAL (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    capacitacion_obtenida VARCHAR(100),
+    expedido_por VARCHAR(100),
+    fecha DATE,
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+
+
+CREATE TABLE CAPACITACION_EXTRAINSTITUCIONAL (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    capacitacion_obtenida VARCHAR(100),
+    expedido_por VARCHAR(100),
+    fecha DATE,
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+
+CREATE TABLE ACTIVIDAD_ROL_INSTRUCTOR (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    curso VARCHAR(100),
+    asignatura_temario VARCHAR(100),
+    fecha DATE,
+    modalidad VARCHAR(50),
+    titulo_habilitante VARCHAR(100),
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+
+CREATE TABLE COMISIONES_PAIS (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    lugar VARCHAR(100),
+    tipo_motivo_despliegue VARCHAR(100),
+    fecha_desde DATE,
+    fecha_hasta DATE,
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+
+
+CREATE TABLE COMISIONES_EXTERIOR (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    lugar VARCHAR(100),
+    tipo_motivo_despliegue VARCHAR(100),
+    fecha_desde DATE,
+    fecha_hasta DATE,
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+
+CREATE TABLE CAMPAÑAS_ANTARTICAS (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_personal INT,
+    dotacion_grupo_tarea VARCHAR(100),
+    cargo_desempenado VARCHAR(100),
+    fecha_desde DATE,
+    fecha_hasta DATE,
+    FOREIGN KEY (id_personal) REFERENCES PERSONAL(id)
+);
+
+
+
+
+
